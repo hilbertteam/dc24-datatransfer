@@ -39,6 +39,6 @@ resource "yandex_compute_instance" "instance" {
 
   metadata = {
     ssh-keys           = local.ssh_key
-    user-data          = "${file("cloud-init.yaml")}" 
+    user-data          = "${file("cloud-init.yaml")}"
   }
 }

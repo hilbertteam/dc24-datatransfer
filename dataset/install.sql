@@ -361,7 +361,7 @@ $func$ LANGUAGE plpgsql;
 SELECT f_ConvertOrgNodes();
 -- Drop the original binary hierarchyid column
 ALTER TABLE HumanResources.Employee DROP COLUMN Org;
-DROP FUNCTION f_ConvertOrgNodes();
+-- DROP FUNCTION f_ConvertOrgNodes();
 
 
 
@@ -759,7 +759,7 @@ $func$ LANGUAGE plpgsql;
 SELECT f_ConvertDocNodes();
 -- Drop the original binary hierarchyid column
 ALTER TABLE Production.Document DROP COLUMN Doc;
-DROP FUNCTION f_ConvertDocNodes();
+-- DROP FUNCTION f_ConvertDocNodes();
 
 -- ProductDocument HierarchyID column
   ALTER TABLE Production.ProductDocument ADD DocumentNode VARCHAR DEFAULT '/';
@@ -840,7 +840,7 @@ $func$ LANGUAGE plpgsql;
 SELECT f_ConvertDocNodes();
 -- Drop the original binary hierarchyid column
 ALTER TABLE Production.ProductDocument DROP COLUMN Doc;
-DROP FUNCTION f_ConvertDocNodes();
+-- DROP FUNCTION f_ConvertDocNodes();
 ALTER TABLE Production.ProductDocument DROP COLUMN rowguid;
 
 

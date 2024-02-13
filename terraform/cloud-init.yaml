@@ -1,7 +1,13 @@
+#cloud-config
+version: v1
 package_update: true
 package_upgrade: true
 packages:
   - git
   - postgresql
 runcmd:
-  - pg_ctlcluster 12 main start
+  - [ pg_ctlcluster, 12, main, start ]
+  - [ git, clone, "https://github.com/hilbertteam/dc24-datatransfer.git", "/run/datatransfer" ]
+  - [ cd, "/run/datatransfer/dataset" ]
+  - [ sudo, -u, postgres, psql, -c, "CREATE DATABASE adventureworks;" ]
+  - sudo -u postgres psql -d adventureworks < install.sql
