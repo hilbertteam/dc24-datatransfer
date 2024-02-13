@@ -1,0 +1,7 @@
+package_update: true
+package_upgrade: true
+packages:
+  - git
+  - postgresql
+runcmd:
+  - pg_ctlcluster 12 main start
