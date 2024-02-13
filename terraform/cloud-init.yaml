@@ -5,9 +5,12 @@ package_upgrade: true
 packages:
   - git
   - postgresql
+  - unzip
 runcmd:
   - [ pg_ctlcluster, 12, main, start ]
   - [ git, clone, "https://github.com/hilbertteam/dc24-datatransfer.git", "/run/datatransfer" ]
   - [ cd, "/run/datatransfer/dataset" ]
+  - unzip data.zip
   - [ sudo, -u, postgres, psql, -c, "CREATE DATABASE adventureworks;" ]
   - sudo -u postgres psql -d adventureworks < install.sql
+  - sudo -u postgres psql -d adventureworks < grants.sql
