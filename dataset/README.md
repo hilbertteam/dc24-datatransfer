@@ -3,14 +3,14 @@
 Commands:
 
 ```
-psql -c "CREATE DATABASE \"Adventureworks\";"
-psql -d Adventureworks < install.sql
+psql -c "CREATE DATABASE \"adventureworks\";"
+psql -d adventureworks < install.sql
 ```
 
 To see list of tables
 
 ```
-\c "Adventureworks"
+\c "adventureworks"
 \dt (humanresources|person|production|purchasing|sales).*
 ```
 

@@ -107,3 +107,20 @@ variable "yc_token" {
   description = "Security token or IAM token used for authentication in Yandex.Cloud. This can also be specified using environment variable YC_TOKEN."
   sensitive   = true
 }
+
+variable "target_database" {
+  type = string
+  default = "dc24"
+  
+}
+
+variable "target_owner" {
+  type = string
+  default = "dc24_owner"
+
+}
+
+variable "transfer_password" {
+  type = string
+  sensitive = true
+}
