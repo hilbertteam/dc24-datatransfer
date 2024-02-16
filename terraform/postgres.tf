@@ -66,7 +66,7 @@ module "dc24_mdb" {
       owner      = var.target_owner
       lc_collate = "ru_RU.UTF-8"
       lc_type    = "ru_RU.UTF-8"
-      extensions = ["pg_stat_statements"]
+      extensions = ["pg_stat_statements",  "uuid-ossp", "tablefunc"]
 
     },
 

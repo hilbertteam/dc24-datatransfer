@@ -50,6 +50,7 @@ sudo -u postgres psql
   
 ```sql
 CREATE ROLE transfer WITH REPLICATION LOGIN ENCRYPTED PASSWORD 'ghHGSjsdsdRT';
+\c adventureworks
 CREATE SCHEMA ya_transfer;
 GRANT ALL PRIVILEGES ON SCHEMA ya_transfer TO transfer;
 
@@ -100,4 +101,28 @@ sudo apt-get install postgresql-12-wal2json
 ```
 
 - пробуем повторно активировать
+- получаем ошибку
+- трансфер не перенес DOMAINS и поэтому не можем создать таблицу
+- перенесем домены руками
+
+- найдем пароль dc24_owner в стейте терраформа
+```bash
+terraform show --json
+```
+
+- подключимся в консоли облака к кластеру
+- выполним запрос по созданию доменов
+
+```sql
+CREATE DOMAIN "OrderNumber" varchar(25) NULL;
+CREATE DOMAIN "AccountNumber" varchar(15) NULL;
+
+CREATE DOMAIN "Flag" boolean NOT NULL;
+CREATE DOMAIN "NameStyle" boolean NOT NULL;
+CREATE DOMAIN "Name" varchar(50) NULL;
+CREATE DOMAIN "Phone" varchar(25) NULL;
+
+```
+
+- повторим активацию
 
