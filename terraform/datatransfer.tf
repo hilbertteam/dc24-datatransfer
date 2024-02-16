@@ -3,7 +3,7 @@ locals {
   source_database = "adventureworks"
 
   source_pwd  = var.transfer_password
-  source_host = yandex_compute_instance.instance.network_interface.0.nat_ip_address 
+  source_host = yandex_compute_instance.instance.network_interface.0.ip_address 
   source_port = 5432              
 }
 

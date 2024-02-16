@@ -12,7 +12,7 @@ module "dc24_mdb" {
   disk_type          = "network-ssd"
   disk_size          = 50
 
-  deletion_protection = true
+  deletion_protection = false
 
   postgresql_config = {
     autovacuum_vacuum_scale_factor        = "0.1"
