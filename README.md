@@ -125,7 +125,24 @@ CREATE DOMAIN "Phone" varchar(25) NULL;
 ```
 
 - повторим активацию
+- проверим активность в базе и информацию по индексам
 
+```sql
+SELECT * FROM pg_stat_activity;
+
+SELECT schemaname, count(1)
+FROM pg_indexes
+WHERE schemaname not like 'pg_%'
+GROUP BY schemaname;
+
+SELECT schemaname, relname, indexrelname,
+pg_size_pretty(pg_relation_size(indexrelid)) "Index Size"
+FROM pg_stat_all_indexes
+WHERE schemaname not like 'pg_%'
+ORDER BY "Index Size";
+```
+
+- при необходимости можем получить даннные схемы через pg_dump
 ```bash
 pg_dump --section="pre-data"  -h <host> -p 5432 \
 -U transfer -d adventureworks > functions.sql
