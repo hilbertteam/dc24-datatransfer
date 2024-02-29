@@ -37,8 +37,8 @@ terraform output
 ## Настраиваем источник
 
 ```bash
-export private_ip=$(terraform output --json | jq '.vm_private_ip.value')
-export public_ip=$(terraform output --json | jq '.vm_ip.value')
+export private_ip=$(terraform output --json | jq -r '.vm_private_ip.value')
+export public_ip=$(terraform output --json | jq -r '.vm_ip.value')
 ssh ubuntu@$public_ip
 ## проверим что cloud-init завершен
 sudo tail -n 100 /var/log/syslog
@@ -84,7 +84,7 @@ $do$;
 ## внутри виртуалки уже по
 ss -tulpn
 ## разрешенную подсеть смотрим в созданном облаке
-sudo echo "host    all             transfer        10.128.0.0/24           md5" >> /etc/postgresql/12/main/pg_hba.conf
+sudo sh -c 'echo "host    all             transfer        10.128.0.0/24           md5" >> /etc/postgresql/12/main/pg_hba.conf'
 ```
 
 - create file /etc/postgresql/12/main/conf.d/dc24.conf
@@ -126,3 +126,11 @@ CREATE DOMAIN "Phone" varchar(25) NULL;
 
 - повторим активацию
 
+```bash
+pg_dump --section="pre-data"  -h <host> -p 5432 \
+-U transfer -d adventureworks > functions.sql
+
+pg_dump --section="pre-data"  -h <host> -p 5432 \
+-U transfer -d adventureworks \
+|  grep -e '^\(GRANT\|REVOKE\)' > grants.sql
+```
